@@ -1,3 +1,12 @@
+[Routers:vars]
+ansible_network_os=ios
+ansible_connection=network_cli
+ansible_net_username=ansible
+ansible_net_password=cisco123
+#ansible_net_hostname=Routers
+
 [Routers]
-RTR1 ansible_host=10.10.10.1
-RTR2 ansible_host=10.10.10.2
+RTR1 ansible_host=10.10.10.1 ansible_user=ansible ansible_password=cisco123
+RTR2 ansible_host=10.10.10.2 ansible_user=ansible ansible_password=cisco123
+
+
