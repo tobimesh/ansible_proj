@@ -3,10 +3,12 @@
   hosts: Routers
   gather_facts: no
   connection: local
+  become: yes
+  
 
-  vars:
-    ansible_net_username: ansible
-    ansible_net_password: cisco123
+  #vars:
+    #ansible_net_username: ansible
+    #ansible_net_password: cisco123
 
   tasks:
     - name: gather ios facts
@@ -15,6 +17,7 @@
         password: "{{ ansible_net_password }}"
         gather_subset: all
       register: ios_output
+      when: "'Routers' in group_names"
 
     - name: output ios_facts
       debug:
