@@ -1,0 +1,21 @@
+---
+- name: Gather IOS facts
+  hosts: Routers
+  gather_facts: no
+  connection: local
+
+  vars:
+    ansible_net_username: ansible
+    ansible_net_password: cisco123
+
+  tasks:
+    - name: gather ios facts
+      ios_facts:
+        username: "{{ ansible_net_username }}"
+        password: "{{ ansible_net_password }}"
+        gather_subset: all
+      register: ios_output
+
+    - name: output ios_facts
+      debug:
+        var: ios_output
