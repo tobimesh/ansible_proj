@@ -14,5 +14,19 @@
     - name: show version
       ios_command:
         username: "{{ ansible_net_username }}"
-        password : "{{ ansible_net_password }}"
+        password: "{{ ansible_net_password }}"
         commands: show version
+      
+      register: output
+
+    - name: show output 
+      debug:
+       var: output
+
+    - name: copy content to file
+      copy: 
+        content: "{{ output }}"
+        dest: ./{{ inventory_hostname}}.txt
+
+
+      
