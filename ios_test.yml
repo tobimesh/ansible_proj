@@ -1,0 +1,21 @@
+---
+- name: gather facts
+  hosts: Routers
+  connection: local
+  gather_facts: no
+
+  vars:
+    cli:
+    host: "{{ inventory_hostname}}"
+    username: ansible
+    password: cisco123
+    transport: cli
+
+
+
+  tasks:
+    - name: gather facts
+      ios_facts:
+        gather_subset: all
+        provider: "{{ cli }}"
+      register: output
