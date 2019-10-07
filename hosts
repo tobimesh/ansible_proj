@@ -10,3 +10,6 @@ RTR1 ansible_host=10.10.10.1 ansible_user=ansible ansible_password=cisco123
 RTR2 ansible_host=10.10.10.2 ansible_user=ansible ansible_password=cisco123
 
 
+# - meta: end_play
+#[py3-hosts:vars]
+#nsible_python_interpreter=/usr/bin/python3
