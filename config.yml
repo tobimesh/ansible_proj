@@ -1,0 +1,10 @@
+---
+- name: configure network devices
+  hosts: Routers
+  gather_facts: no
+  connection: cli_network
+  
+  tasks:
+    - name: configure loopback
+      cli_config:
+        config: "{{ lookup('template', 'template.j2') }}"
