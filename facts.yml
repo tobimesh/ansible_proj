@@ -4,11 +4,10 @@
   gather_facts: no
   connection: local
   become: yes
-  
 
-  #vars:
-    #ansible_net_username: ansible
-    #ansible_net_password: cisco123
+   #vars:
+   #ansible_net_username: ansible
+   #ansible_net_password: cisco123
 
   tasks:
     - name: gather ios facts
@@ -19,6 +18,15 @@
       register: ios_output
       when: "'Routers' in group_names"
 
-    - name: output ios_facts
+    # - name: output ios_facts
+    #   debug:
+    #     var: ios_output
+
+
+    - name: DISPLAY Version
       debug:
-        var: ios_output
+        msg: " The serial number is: {{ ansible_net_version }}"
+
+    - name: display  serial number
+      debug:
+        msg: " The serial number is: {{ ansible_net_serialnum }}"
