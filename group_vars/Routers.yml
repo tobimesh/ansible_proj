@@ -1,0 +1,3 @@
+---
+ansible_net_username: ansible
+ansible_net_password: cisco123
