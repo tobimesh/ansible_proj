@@ -1,18 +1,27 @@
 [NXOS:vars]
-transport=cli
-ansible_network_os=ios
-ansible_connection=network_cli
+#transport=cli
+#ansible_network_os=nxos
+#ansible_connection=network_cli
 #ansible_net_username="ansible"
 #ansible_net_password="cisco123"
-ansible_net_hostname=N7K1
+#ansible_net_hostname=N7K1
 
-[Routers]
-RTR1 ansible_host=10.10.10.1 ansible_user=ansible ansible_password=cisco123
-RTR2 ansible_host=10.10.10.2 ansible_user=ansible ansible_password=cisco123
+
+[IOS:vars]
+#transport=cli
+#ansible_network_os=ios
+#ansible_connection=network_cli
+#ansible_net_username="ansible"
+#ansible_net_password="cisco123"
+#ansible_net_hostname=N7K1
+
+[IOS]
+RTR1 ansible_host=10.10.10.1 
+RTR2 ansible_host=10.10.10.2 
 
 
 [NXOS]
-N7K1 ansible_host=10.10.10.7 ansible_net_username=ansible ansible_net_password=cisco123
+N7K1 ansible_host=10.10.10.7 
 
 
 
