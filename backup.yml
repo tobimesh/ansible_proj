@@ -1,0 +1,47 @@
+---
+
+# Playbook to  get system timen and backup files
+
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: Get ansible date/time facts
+    setup:
+      filter: "ansible_date_time"
+      gather_subset: "!all"
+
+  - name: Store DTG as fact
+    set_fact: 
+      DTG: "{{ ansible_date_time.date }}"
+
+  - name: Create directory 
+    file:
+      path:  ~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG}}
+      state: directory
+  run_once: true
+
+- hosts: IOS
+  gather_facts: no
+
+  tasks:
+  - name: Backup IOS devices
+    ios_command:
+      commands: show run
+    register: config
+
+  - name: save output to ~/NetDevOps/git-fork/ansible_proj/backups/
+    copy:
+      content: "{{ config.stdout[0] }}"
+      dest: "~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-config.txt"
+
+- hosts: NXOS
+  gather_facts: false
+
+  tasks:
+  - name: backup nexus devices
+    nxos_config:
+      backup: yes
+      backup_options:
+        filename: "{{ hostvars.localhost.DTG }}/{{inventory_hostname}}-{{ hostvars.localhost.DTG}}-config.txt"
+        dir_path: ~/NetDevOps/git-fork/ansible_proj/backups
