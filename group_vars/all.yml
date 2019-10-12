@@ -1,6 +1,8 @@
-
+---
 nodes:
   RTR1:
     "Fastethernet1/0": "172.32.16.1"
   RTR2:
     "Fastethernet1/0": "172.32.15.2"
+
+
