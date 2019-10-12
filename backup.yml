@@ -12,12 +12,12 @@
       gather_subset: "!all"
 
   - name: Store DTG as fact
-    set_fact: 
+    set_fact:
       DTG: "{{ ansible_date_time.date }}"
 
-  - name: Create directory 
+  - name: Create directory
     file:
-      path:  ~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG}}
+      path:  ~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG }}
       state: directory
   run_once: true
 
@@ -33,7 +33,7 @@
   - name: save output to ~/NetDevOps/git-fork/ansible_proj/backups/
     copy:
       content: "{{ config.stdout[0] }}"
-      dest: "~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-config.txt"
+      dest: "~/NetDevOps/git-fork/ansible_proj/backups/{{ hostvars.localhost.DTG }}/{{ inventory_hostname }}-{{ hostvars.localhost.DTG }}-config.txt"
 
 - hosts: NXOS
   gather_facts: false
@@ -43,5 +43,5 @@
     nxos_config:
       backup: yes
       backup_options:
-        filename: "{{ hostvars.localhost.DTG }}/{{inventory_hostname}}-{{ hostvars.localhost.DTG}}-config.txt"
+        filename: "{{ hostvars.localhost.DTG }}/{{ inventory_hostname }}-{{ hostvars.localhost.DTG }}-config.txt"
         dir_path: ~/NetDevOps/git-fork/ansible_proj/backups
