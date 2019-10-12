@@ -1,0 +1,16 @@
+---
+# enable nxos features
+
+- hosts: NXOS
+  gather_facts: no
+
+  tasks:
+    - name: enable nxos features
+      nxos_feature:
+        feature: vpc
+        state: enabled
+
+    - name: enable nxos features
+      nxos_feature:
+        feature: ospf 
+        state: enabled
