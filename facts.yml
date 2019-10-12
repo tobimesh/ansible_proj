@@ -1,13 +1,13 @@
 ---
 - name: Gather IOS facts
-  hosts: NXOS
+  hosts: all
   gather_facts: no
   connection: local
   become: yes
 
-  vars:
-    ansible_net_username: "ansible"
-    ansible_net_password: "cisco123"
+  # vars:
+  #   ansible_net_username: ansible
+  #   ansible_net_password: cisco123
 
   tasks:
     - name: gather ios facts
@@ -16,7 +16,7 @@
         password: "{{ ansible_net_password }}"
         gather_subset: all
       register: ios_output
-      when: "'Routers' in group_names"
+      when: "'IOS' in group_names"
     
     - name: Gather NXOS facts
       nxos_facts:
